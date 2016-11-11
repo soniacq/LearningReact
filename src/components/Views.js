@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import FiltersTabs from './FiltersTabs';
+import ViewTabs from './ViewTabs';
 import Avatar from 'material-ui/Avatar';
 import FileFolder from 'material-ui/svg-icons/file/folder';
 import CheckList from 'material-ui/svg-icons/av/playlist-add-check';
@@ -40,7 +40,7 @@ class Views extends Component{
              showExpandableButton={true}
            />
            <CardMedia expandable={true} style={styles.cardMedia}>
-              <FiltersTabs />
+              <ViewTabs />
            </CardMedia>
        </Card>
     )

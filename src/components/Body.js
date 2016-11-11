@@ -12,7 +12,7 @@ class Body extends Component{
       <div>
       <Grid className="boder" >
         <Row>
-          <Col xs={5} md={2} className="Menus-body">
+          <Col xs={5} md={3} className="Menus-body">
             <Row className="Menus-child">
               <DomainInfo />
             </Row>
@@ -23,7 +23,7 @@ class Body extends Component{
               <Filters />
             </Row>
           </Col>
-          <Col xs={14} md={10} >
+          <Col xs={14} md={9} >
             <Row className="View-body">
               <Views />
             </Row>
