@@ -11,19 +11,19 @@ import {blue900} from 'material-ui/styles/colors';
 const styles = {
   card: {
     background: 'white',
-    borderRadius: '10px 10px 10px 10px',
+    borderRadius: '0px 0px 0px 0px',
   },
   cardHeader:{
     background: 'white',
     padding:'8px 8px 4px 8px',
-    borderRadius: '10px 10px 10px 10px',
+    borderRadius: '0px 0px 0px 0px',
   },
   avatar:{
     margin:'-20px 8px 0px 0px',
   },
   cardMedia:{
     padding:'2px 6px 2px 6px',
-    borderRadius: '10px 10px 10px 10px',
+    borderRadius: '0px 0px 0px 0px',
   },
 
 };
@@ -34,7 +34,7 @@ class Views extends Component{
       <Card initiallyExpanded={true} style={styles.card}>
            <CardHeader
              title="View"
-             avatar={ <Avatar color={'white'} backgroundColor={blue900} size={25} style={styles.avatar} icon={<CheckList />} />}
+             avatar={ <Avatar color={'white'} backgroundColor={'#7D49A1'} size={25} style={styles.avatar} icon={<CheckList />} />}
               style={styles.cardHeader}
              actAsExpander={true}
              showExpandableButton={true}

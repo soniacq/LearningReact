@@ -42,8 +42,8 @@ class FiltersTabs extends React.Component {
         <Tabs
           onChange={this.handleChange}
           value={this.state.slideIndex}
-          inkBarStyle={{background: blue900 ,height: '4px'}}
-          tabItemContainerStyle={{background: blue400 ,height: '40px'}}
+          inkBarStyle={{background:'#7940A0' ,height: '4px'}}
+          tabItemContainerStyle={{background: '#9A7BB0' ,height: '40px'}}
         >
           <Tab label="Queries" value={0} style={styles.tab} />
           <Tab label="Tags" value={1} style={styles.tab} />

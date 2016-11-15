@@ -3,7 +3,13 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Body from './components/Body';
-import AppBar from 'material-ui/AppBar';
+import Home from './components/Home';
+var ReactRouter = require('react-router');
+var Router = ReactRouter.Router;
+var Route = ReactRouter.Route;
+var hashHistory = ReactRouter.hashHistory;
+var IndexRoute = ReactRouter.IndexRoute;
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
@@ -19,10 +25,13 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-      <div >
-
-          <Header name='Domain Discovery Tool'/>
-          <Body />
+      <div>
+      <Router history={hashHistory}>
+        <Route path='/' component={Header}>
+          <IndexRoute component={Home} />
+          <Route path='playerOne' header='Player One' component={Body} />
+        </Route>
+      </Router>
       </div>
       </MuiThemeProvider>
     );

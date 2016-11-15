@@ -13,7 +13,7 @@ const styles = {
     fontSize: 12,
     paddingTop: 16,
     marginBottom: 12,
-    height: '480px',
+    height: '940px',
   },
   slide: {
     height: '100px',
@@ -63,8 +63,8 @@ class ViewTabs extends React.Component {
         <Tabs
           onChange={this.handleChange}
           value={this.state.slideIndex}
-          inkBarStyle={{background: blue900 ,height: '4px'}}
-          tabItemContainerStyle={{background: blue400 ,height: '40px'}}
+          inkBarStyle={{background: '#7940A0' ,height: '4px'}}
+          tabItemContainerStyle={{background:'#9A7BB0', height: '40px'}}
         >
           <Tab label="Snippes" value={0} style={styles.tab} />
           <Tab label="Visualizations" value={1} style={styles.tab} />

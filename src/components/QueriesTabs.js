@@ -6,6 +6,20 @@ import {deepPurpleA400, deepPurple300, orange300, indigoA400, blue400, blue900} 
 import FontIcon from 'material-ui/FontIcon';
 import AutoComplete from 'material-ui/AutoComplete';
 
+import { InputGroup, FormControl , DropdownButton,  MenuItem} from 'react-bootstrap';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItemM from 'material-ui/MenuItem';
+
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import {Grid, Row, Col} from 'react-bootstrap';
+
+import FlatButton from 'material-ui/FlatButton';
+import ActionAndroid from 'material-ui/svg-icons/action/android';
+import {fullWhite} from 'material-ui/styles/colors';
+
+import Search from 'material-ui/svg-icons/action/search';
+
 const styles = {
   headline: {
     fontSize: 24,
@@ -55,8 +69,8 @@ class QueriesTabs extends React.Component {
         <Tabs
           onChange={this.handleChange}
           value={this.state.slideIndex}
-          inkBarStyle={{background: blue900 ,height: '4px'}}
-          tabItemContainerStyle={{background: blue400 ,height: '30px'}}
+          inkBarStyle={{background: '#7940A0' ,height: '4px'}}
+          tabItemContainerStyle={{background: '#9A7BB0' ,height: '30px'}}
         >
           <Tab label={'WEB'} value={0}  style={styles.tab} />
           <Tab label={'LOAD'} value={1} style={styles.tab} />
@@ -66,16 +80,28 @@ class QueriesTabs extends React.Component {
           onChangeIndex={this.handleChange}
         >
           <div style={styles.slide} >
-          <AutoComplete style={{  background:'white'}}
-                   hintText="Type anything"
-                   dataSource={this.state.dataSource}
-                   onUpdateInput={this.handleUpdateInput}
-           />
+          <Col xs={9} md={9} style={{marginLeft:'-15px'}} >
+           <InputGroup >
+            <FormControl type="text" placeholder="write a query ..." />
+            <DropdownButton
+              componentClass={InputGroup.Button}
+              id="input-dropdown-addon"
+              title="Googl"
+            >
+              <MenuItem key="1">Bing</MenuItem>
+              </DropdownButton>
+            </InputGroup>
+            </Col>
+            <Col xs={2} md={1} >
+            <FlatButton
+              backgroundColor="#26C6DA"
+              hoverColor="#80DEEA"
+              icon={<Search color={fullWhite} />}
+            />
+            </Col>
           </div>
           <div style={styles.slide}>
-            slide n°2
-            slide n°1
-            slide n°1
+            Load Urls...
           </div>
 
         </SwipeableViews>

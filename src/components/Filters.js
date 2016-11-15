@@ -10,20 +10,24 @@ import {blue900} from 'material-ui/styles/colors';
 const styles = {
   card: {
     background: 'white',
-    borderRadius: '10px 10px 10px 10px',
+    borderRadius: '0px 0px 0px 0px',
+    borderStyle: 'solid',
+    borderColor: '#C09ED7',
+    borderWidth: '1px 0px 1px 0px'
+
   },
   avatar:{
     margin:'-20px 8px 0px 0px',
   },
   cardHeader:{
-    background: '#E3F2FD',
-    padding:'8px 1px 1px 6px',
-    borderRadius: '10px 10px 8px 8px',
+    background: '#DCCCE7',
+    padding:'10px 1px 10px 6px',
+    borderRadius: '0px 0px 0px 0px',
   },
   cardMedia:{
-    background: '#E3F2FD',
-    padding:'2px 4px 2px 4px',
-    borderRadius: '0px 0px 10px 10px',
+    background: '#DCCCE7',
+    padding:'0px 4px 2px 4px',
+    borderRadius: '0px 0px 0px 0px',
   },
 
 };
@@ -34,7 +38,7 @@ class Filters extends Component{
       <Card style={styles.card}>
            <CardHeader
              title="Filters"
-             avatar={ <Avatar color={'white'} backgroundColor={blue900} size={25} style={styles.avatar} icon={<CheckList />} />}
+             avatar={ <Avatar color={'white'} backgroundColor={'#7940A0'} size={25} style={styles.avatar} icon={<CheckList />} />}
              style={styles.cardHeader}
              actAsExpander={true}
              showExpandableButton={true}
