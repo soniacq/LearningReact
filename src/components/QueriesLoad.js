@@ -10,6 +10,7 @@ import {blue900} from 'material-ui/styles/colors';
 
 const styles = {
   card: {
+
     borderStyle: 'solid',
     borderColor: '#C09ED7',
     background: 'white',
@@ -35,7 +36,7 @@ const styles = {
 class LoadQueries extends Component{
   render(){
     return(
-      <Card style={styles.card}>
+      <Card initiallyExpanded={true} style={styles.card}>
            <CardHeader
              title="Search"
              avatar={ <Avatar color={'white'} backgroundColor={'#7940A0'} size={25} style={styles.avatar} icon={<Assignment />} />}

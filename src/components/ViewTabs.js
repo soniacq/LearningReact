@@ -8,6 +8,15 @@ import Checkbox from 'material-ui/Checkbox';
 import Scatterplot from './Scatterplot'
 import {csv} from 'd3-request'
 
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+
+import Drawer from 'material-ui/Drawer';
+import AppBar from 'material-ui/AppBar';
+import QueriesLoad from './QueriesLoad';
+import RaisedButton from 'material-ui/RaisedButton';
+import MenuItem from 'material-ui/MenuItem';
+
 const styles = {
   headline: {
     fontSize: 12,
@@ -21,6 +30,12 @@ const styles = {
   tab:{
     fontSize: '12px',
   },
+  button:{
+    marginTop:'10px',
+    marginLeft:'10px',
+    marginRight: 20,
+  },
+
 };
 
 class ViewTabs extends React.Component {
@@ -28,10 +43,13 @@ class ViewTabs extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      open: false,
       slideIndex: 0,
     };
     this.processResults = this.processResults.bind(this)
   }
+
+  handleToggle = () => this.setState({open: !this.state.open});
 
   processResults (error, data){
       this.setState({"data":data});
@@ -43,6 +61,7 @@ class ViewTabs extends React.Component {
 
   handleChange = (value) => {
     this.setState({
+      open: !this.state.open,
       slideIndex: value,
     });
   };
@@ -82,6 +101,10 @@ class ViewTabs extends React.Component {
             <Checkbox label="SimpleQuery" style={styles.checkbox}  />
           </div>
           <div style={styles.headline}>
+          <FloatingActionButton mini={true} style={styles.button}>
+   <ContentAdd />
+ </FloatingActionButton>
+
             {pairs.map((p)=>{
                 return (
                     <Scatterplot title={p['names'][0] + " x " + p['names'][1]} data={this.state.data}
@@ -89,6 +112,7 @@ class ViewTabs extends React.Component {
                         xLabel={p['names'][0]} yLabel={p['names'][1]}/>
                   )
             })}
+
           </div>
           <div style={styles.headline}>
             <Checkbox label="Neutral" style={styles.checkbox}  />

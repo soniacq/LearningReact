@@ -80,20 +80,20 @@ class QueriesTabs extends React.Component {
           onChangeIndex={this.handleChange}
         >
           <div style={styles.slide} >
-          <Col xs={9} md={9} style={{marginLeft:'-15px'}} >
+          <Col xs={10} md={10} style={{marginLeft:'-15px'}} >
            <InputGroup >
             <FormControl type="text" placeholder="write a query ..." />
             <DropdownButton
               componentClass={InputGroup.Button}
               id="input-dropdown-addon"
-              title="Googl"
+              title="Goog"
             >
               <MenuItem key="1">Bing</MenuItem>
               </DropdownButton>
             </InputGroup>
             </Col>
             <Col xs={2} md={1} >
-            <FlatButton
+            <FlatButton style={{marginLeft:'-10px', minWidth: '58px'}}
               backgroundColor="#26C6DA"
               hoverColor="#80DEEA"
               icon={<Search color={fullWhite} />}

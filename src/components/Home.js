@@ -18,22 +18,29 @@ import ContentCopy from 'material-ui/svg-icons/content/content-copy';
 import DeleteForever from 'material-ui/svg-icons/action/delete-forever';
 import {fullWhite} from 'material-ui/styles/colors';
 
+function Callfunction(){
+  alert("hello");
+};
+
 function Home () {
+
   return (
     <div className="jumbotron col-sm-12 text-center">
-        <div style={{ marginLeft:'40%'}}>
+        <div style={{ marginLeft:'25%'}}>
           <Row>
-            <Col xs={3} md={3} style={{borderStyle: 'solid',
+            <Col xs={6} md={6} style={{borderStyle: 'solid',
             borderColor: '#C09ED7',
             background: 'white',
             borderRadius: '0px 0px 0px 0px',
             borderWidth: '0px 0px 1px 0px'}}>
                   <List>
                     <Subheader style={{color:'black'}}><h2>Domains</h2></Subheader>
+                    <Link to='/playerOne' text={"Machine Learning"}>
                     <ListItem style={{textAlign: 'left'}}
                       primaryText="Machine Learning"
                       rightIcon={<Forward />}
                     />
+                    </Link>
                     <ListItem style={{textAlign: 'left'}}
                       primaryText="Car"
                       rightIcon={<Forward />}

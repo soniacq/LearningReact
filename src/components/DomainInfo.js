@@ -20,6 +20,8 @@ import QueriesLoad from './QueriesLoad';
 
 const styles = {
   cardHeader:{
+    marginLeft:'-10px',
+    marginRight:'-10px',
     paddingTop: '0px',
     paddingBottom: '0px'
   },
@@ -32,7 +34,7 @@ const styles = {
     marginRight: '0px'
   },
   tittleCurrentDomain:{
-    fontSize: 14,
+    fontSize: 12,
     textTransform: 'uppercase',
     color: 'black', fontWeight:'bold',
     paddingLeft: '3px',
@@ -49,10 +51,9 @@ const styles = {
 class DomainInfo extends Component{
   constructor(props) {
     super(props);
-    this.state = {open: true};
+
   }
 
-  handleToggle = () => this.setState({open: !this.state.open});
 
   render(){
     return(
@@ -75,11 +76,11 @@ class DomainInfo extends Component{
                <MenuItem primaryText="Create Model" />
                <MenuItem primaryText="More Info" />
             </IconMenu>
-             <ToolbarSeparator style={styles.zeroMarginLeftRight} />
+             <ToolbarSeparator style={{marginLeft: '-2px', marginRight: '0px'}} />
           </ToolbarGroup>
           <ToolbarGroup lastChild={true}  style={styles.toolBarGroupChangeDomain}>
           <Link to='/'>
-            <RaisedButton  style={{marginTop:10, marginLeft: '1px', marginRight: '3px'}} label="Change" primary={true} />
+            <RaisedButton  style={{marginTop:10, marginLeft: '-17px', marginRight: '3px'}} label="Change" primary={true} />
           </Link>
           </ToolbarGroup>
      </Toolbar>
@@ -88,16 +89,7 @@ class DomainInfo extends Component{
          kjl
          </CardActions>
          <CardText >
-         <div>
-            <RaisedButton style={{marginLeft:100}}
-              label="Toggle Drawer"
-              onTouchTap={this.handleToggle}
-            />
-            <Drawer open={this.state.open} swipeAreaWidth={1000}>
-                <QueriesLoad />
-              <MenuItem>Menu Item 2</MenuItem>
-            </Drawer>
-          </div>
+
            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
