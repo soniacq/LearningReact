@@ -43,13 +43,10 @@ class ViewTabs extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      open: false,
       slideIndex: 0,
     };
     this.processResults = this.processResults.bind(this)
   }
-
-  handleToggle = () => this.setState({open: !this.state.open});
 
   processResults (error, data){
       this.setState({"data":data});
@@ -61,7 +58,6 @@ class ViewTabs extends React.Component {
 
   handleChange = (value) => {
     this.setState({
-      open: !this.state.open,
       slideIndex: value,
     });
   };
