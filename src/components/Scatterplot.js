@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import 'react-vis/main.css';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import {
   XYPlot,
   XAxis,
@@ -8,7 +7,7 @@ import {
   VerticalGridLines,
   HorizontalGridLines,
   MarkSeries} from 'react-vis';
-import {scaleOrdinal, schemeCategory10} from 'd3-scale';
+import {scaleOrdinal} from 'd3-scale'; //schemeCategory10
 
 class Scatterplot extends Component {
     constructor(props){

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col} from 'react-bootstrap';
+import { Row, Col} from 'react-bootstrap';
 import DomainInfo from './DomainInfo';
 import QueriesLoad from './QueriesLoad';
 import Filters from './Filters';
@@ -8,7 +8,18 @@ import '../css/Components.css';
 
 import Sidebar from 'react-sidebar';
 
+import Avatar from 'material-ui/Avatar';
+import Assignment from 'material-ui/svg-icons/action/assignment-returned';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+
 const styles = {
+  button:{
+    marginTop:45,
+    paddingBottom:'-145px',
+    marginBottom:'-545px',
+    marginRight: 45,
+  },
   contentHeaderMenuLink: {
     textDecoration: 'none',
     color: 'white',
@@ -30,7 +41,7 @@ class Body extends Component{
       super(props);
       this.state = {
       docked: true,
-      open: false,
+      open: true,
       transitions: true,
       touch: true,
       shadow: true,
@@ -38,35 +49,68 @@ class Body extends Component{
       touchHandleWidth: 20,
       dragToggleDistance: 30,
       size:350,
+      iconDomainInfo:null,
+      stateQueryCard:true,
     };
   }
 
-  openDock(){
-    this.onSetOpen(!this.state.open);
-    if(!this.state.open){
-    this.setState({size: 50});}
-    else{
-      this.setState({size: 350});
+    static  openDock1(){
+      if(true){
+      this.setState.bind(this)({
+        size: 50,
+        iconDomainInfo:<Avatar color={'white'} backgroundColor={'#7940A0'} size={25} style={styles.avatar} icon={<Assignment />} />,
+        stateQueryCard:false,
+        open: false,
+      });}
+      else{
+        this.setState({
+          size: 350,
+          iconDomainInfo:null,
+          stateQueryCard:true,
+          open: true,
+        });
+      }
     }
-  }
 
-  onSetOpen(open) {
-    this.setState({open: open});
+
+  openDock(){
+    if(this.state.open){
+    this.setState({
+      size: 50,
+      iconDomainInfo:<Avatar color={'white'} backgroundColor={'#7940A0'} size={25} style={styles.avatar} icon={<Assignment />} />,
+      stateQueryCard:false,
+      open: !this.state.open,
+    });}
+    else{
+      this.setState({
+        size: 350,
+        iconDomainInfo:null,
+        stateQueryCard:true,
+        open: !this.state.open,
+      });
+    }
   }
 
   render(){
      const sidebar = (<div style={{width:this.state.size}}>
-       <Col style={{marginTop:70, marginLeft:10, marginRight:10, width:350, background:"black"}}>
+
+       <Col style={{marginTop:70, marginLeft:10, marginRight:10, width:350, background:"white"}}>
      <Row className="Menus-child">
-       <DomainInfo stated={true} />
+       <DomainInfo stated={this.state.iconDomainInfo} statedCard={this.state.stateQueryCard} />
      </Row>
      <Row className="Menus-child">
-       <QueriesLoad />
+       <QueriesLoad statedCard={this.state.stateQueryCard} />
      </Row>
      <Row className="Menus-child">
        <Filters />
      </Row>
+     <Row className="Menus-child">
+     <FloatingActionButton mini={true} style={styles.button} zDepth={3} onClick={this.openDock.bind(this)}>
+        <ContentAdd />
+    </FloatingActionButton>
+    </Row>
      </Col>
+
      </div>
    );
 
@@ -86,9 +130,12 @@ class Body extends Component{
 
    return (
      <Sidebar {...sidebarProps}>
+
          <div>
+
          <Row style={styles.content}>
-               <button onClick={this.openDock.bind(this)}>cvbcfvb</button>
+
+
                  <Views />
                  </Row>
          </div>

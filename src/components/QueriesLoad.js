@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardHeader, CardMedia} from 'material-ui/Card';
 import QueriesTabs from './QueriesTabs';
 import Avatar from 'material-ui/Avatar';
-import FileFolder from 'material-ui/svg-icons/file/folder';
-import Search from 'material-ui/svg-icons/action/search';
 import Assignment from 'material-ui/svg-icons/action/assignment-returned';
-import FontIcon from 'material-ui/FontIcon';
-import {blue900} from 'material-ui/styles/colors';
 
 const styles = {
   card: {
@@ -34,9 +30,44 @@ const styles = {
 };
 
 class LoadQueries extends Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      expanded: this.props.statedCard,
+    };
+  };
+
+  componentWillMount = () => {
+   this.setState({expanded: this.props.statedCard, valueT: true,});
+  };
+
+  componentWillReceiveProps  = (newProps) => {
+       this.setState({expanded: this.props.statedCard}, function() {
+            this.setState({expanded: this.props.statedCard});
+       });
+   };
+
+  handleExpandChange = (expanded) => {
+    this.setState({expanded: expanded});
+  };
+
+  handleToggle = (event, toggle) => {
+    this.setState({expanded: toggle});
+  };
+
+  handleExpand = () => {
+    this.setState({expanded: true});
+  };
+
+  handleReduce = () => {
+    this.setState({expanded: false});
+  };
+
   render(){
+
     return(
-      <Card initiallyExpanded={true} style={styles.card}>
+      <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} style={styles.card}>
            <CardHeader
              title="Search"
              avatar={ <Avatar color={'white'} backgroundColor={'#7940A0'} size={25} style={styles.avatar} icon={<Assignment />} />}
@@ -45,6 +76,7 @@ class LoadQueries extends Component{
              showExpandableButton={true}
            />
            <CardMedia expandable={true} style={styles.cardMedia}>
+
               <QueriesTabs />
            </CardMedia>
        </Card>

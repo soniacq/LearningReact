@@ -12,8 +12,6 @@ var IndexRoute = ReactRouter.IndexRoute;
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 injectTapEventPlugin();
 
 

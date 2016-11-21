@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardHeader, CardMedia} from 'material-ui/Card';
 import FiltersTabs from './FiltersTabs';
 import Avatar from 'material-ui/Avatar';
-import FileFolder from 'material-ui/svg-icons/file/folder';
 import CheckList from 'material-ui/svg-icons/av/playlist-add-check';
-import FontIcon from 'material-ui/FontIcon';
-import {blue900} from 'material-ui/styles/colors';
 
 const styles = {
   card: {

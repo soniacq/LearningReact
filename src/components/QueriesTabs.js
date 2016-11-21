@@ -2,20 +2,12 @@ import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 // From https://github.com/oliviertassinari/react-swipeable-views
 import SwipeableViews from 'react-swipeable-views';
-import {deepPurpleA400, deepPurple300, orange300, indigoA400, blue400, blue900} from 'material-ui/styles/colors';
-import FontIcon from 'material-ui/FontIcon';
-import AutoComplete from 'material-ui/AutoComplete';
 
 import { InputGroup, FormControl , DropdownButton,  MenuItem} from 'react-bootstrap';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItemM from 'material-ui/MenuItem';
 
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import {Grid, Row, Col} from 'react-bootstrap';
+import { Col} from 'react-bootstrap';
 
 import FlatButton from 'material-ui/FlatButton';
-import ActionAndroid from 'material-ui/svg-icons/action/android';
 import {fullWhite} from 'material-ui/styles/colors';
 
 import Search from 'material-ui/svg-icons/action/search';

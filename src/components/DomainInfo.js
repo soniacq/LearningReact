@@ -1,26 +1,16 @@
   import React, {Component} from 'react';
-  import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+  import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 
 
   import IconMenu from 'material-ui/IconMenu';
   import IconButton from 'material-ui/IconButton';
-  import FontIcon from 'material-ui/FontIcon';
   import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
   import MenuItem from 'material-ui/MenuItem';
-  import DropDownMenu from 'material-ui/DropDownMenu';
   import RaisedButton from 'material-ui/RaisedButton';
   import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
   var ReactRouter = require('react-router');
   var Link = ReactRouter.Link;
-
-  import Drawer from 'material-ui/Drawer';
-  import AppBar from 'material-ui/AppBar';
-  import QueriesLoad from './QueriesLoad';
-
-
-  import Avatar from 'material-ui/Avatar';
-  import Assignment from 'material-ui/svg-icons/action/assignment-returned';
 
   const styles = {
     cardHeader:{
@@ -48,57 +38,108 @@
     },
   };
 
-  onSetOpen(open) {
-    if(this.props.stated){this.setState({avatar : <Avatar color={'white'} backgroundColor={'#7940A0'} size={25} style={styles.avatar} icon={<Assignment />} /> })};
 
-  }
+  class Tool extends Component{
+    render(){
+
+      return(
+        <Toolbar style={styles.zeroMarginLeftRight}>
+          <ToolbarGroup  firstChild={true} style={styles.toolBarCurrentDomain}>
+            <ToolbarTitle text="Machine Learning" style={styles.tittleCurrentDomain}/>
+            <IconMenu
+              iconButtonElement={
+                <IconButton touch={true}>
+                <NavigationExpandMoreIcon />
+                </IconButton>
+              }
+              style={styles.zeroMarginLeftRight}
+            >
+              <MenuItem primaryText="Create Model" />
+              <MenuItem primaryText="More Info" />
+            </IconMenu>
+            <ToolbarSeparator style={styles.zeroMarginLeftRight} />
+          </ToolbarGroup>
+          <ToolbarGroup lastChild={true}  style={styles.toolBarGroupChangeDomain}>
+            <Link to='/'>
+            <RaisedButton  style={{marginTop:10, marginLeft: '1px', marginRight: '3px'}} label="Change" primary={true} />
+            </Link>
+          </ToolbarGroup>
+        </Toolbar>
+      )
+    }
+  };
 
   class DomainInfo extends Component{
     constructor(props) {
       super(props);
       this.state = {
-        open: false,
-        avatar: null,
+        expanded: true,
+        toolBar: null,
       };
 
+    };
+
+    componentWillMount = () => {
+      var toolBarInitial = <Tool />;
+      this.setState({toolBar: toolBarInitial});
+    };
+
+    componentWillReceiveProps  = (newProps) => {
+         this.setState({expanded: this.props.statedCard}, function() {
+           if(!this.props.statedCard){
+             this.setState({toolBar: null});
+           }
+           else{
+             this.setState({toolBar: <Tool />});
+           }
+              this.setState({expanded: this.props.statedCard});
+         });
+     };
+
+    handleExpandChange = (expanded) => {
+      this.setState({expanded: expanded});
+    };
+
+    handleToggle = (event, toggle) => {
+      this.setState({expanded: toggle});
+    };
+
+    handleExpand = () => {
+      this.setState({expanded: true});
+    };
+
+    handleReduce = () => {
+      this.setState({expanded: false});
+    };
+
+/*
+    componentWillMount() {
+      this.onSetOpen();
     }
 
-    handleToggle = () => this.setState({open: !this.state.open});
+    onSetOpen() {
+      var avatarValue = null;
+      if(this.props.stated){
+         avatarValue = <Avatar color={'white'} backgroundColor={'#7940A0'} size={25} style={styles.avatar} icon={<Assignment />} />;
+      }
+      this.setState({
+        avatar : avatarValue,
+      })
+
+    }*/
 
     render(){
 
-      const avatarNull = <Avatar color={'white'} backgroundColor={'#7940A0'} size={25} style={styles.avatar} icon={<Assignment />} />;
       return(
-        <Card initiallyExpanded={true}>
-          <CardHeader style={styles.cardHeader}
-          avatar={this.state.avatar}
-          //actAsExpander={true}
-          showExpandableButton={true}
-          >
-            <Toolbar style={styles.zeroMarginLeftRight}>
-              <ToolbarGroup  firstChild={true} style={styles.toolBarCurrentDomain}>
-                <ToolbarTitle text="Machine Learning" style={styles.tittleCurrentDomain}/>
-                <IconMenu
-                  iconButtonElement={
-                    <IconButton touch={true}>
-                    <NavigationExpandMoreIcon />
-                    </IconButton>
-                  }
-                  style={styles.zeroMarginLeftRight}
-                >
-                  <MenuItem primaryText="Create Model" />
-                  <MenuItem primaryText="More Info" />
-                </IconMenu>
-                <ToolbarSeparator style={styles.zeroMarginLeftRight} />
-              </ToolbarGroup>
-              <ToolbarGroup lastChild={true}  style={styles.toolBarGroupChangeDomain}>
-                <Link to='/'>
-                <RaisedButton  style={{marginTop:10, marginLeft: '1px', marginRight: '3px'}} label="Change" primary={true} />
-                </Link>
-              </ToolbarGroup>
-            </Toolbar>
-          </CardHeader>
 
+        <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
+          <CardHeader style={styles.cardHeader}
+          avatar={this.props.stated}
+          actAsExpander={true}
+          showExpandableButton={false}
+          >
+          {this.state.toolBar}
+          </CardHeader>
           <CardActions>
             kjl
           </CardActions>
@@ -108,10 +149,6 @@
               label="Toggle Drawer"
               onTouchTap={this.handleToggle}
               />
-              <Drawer open={this.state.open} >
-                <QueriesLoad />
-                <MenuItem>Menu Item 2</MenuItem>
-              </Drawer>
             </div>
 
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.

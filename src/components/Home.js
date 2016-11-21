@@ -2,15 +2,11 @@ var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 
-import Avatar from 'material-ui/Avatar';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
-import Divider from 'material-ui/Divider';
-import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
-import {Grid, Row, Col} from 'react-bootstrap';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import { Row, Col} from 'react-bootstrap';
+//import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
-import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import Forward from 'material-ui/svg-icons/content/forward';
 import AddBox from 'material-ui/svg-icons/content/add-box';
@@ -18,9 +14,7 @@ import ContentCopy from 'material-ui/svg-icons/content/content-copy';
 import DeleteForever from 'material-ui/svg-icons/action/delete-forever';
 import {fullWhite} from 'material-ui/styles/colors';
 
-function Callfunction(){
-  alert("hello");
-};
+
 
 function Home () {
 

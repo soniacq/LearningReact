@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 // From https://github.com/oliviertassinari/react-swipeable-views
 import SwipeableViews from 'react-swipeable-views';
-import {deepPurpleA400, orange300, blue400, indigoA400, blue900} from 'material-ui/styles/colors';
 import Checkbox from 'material-ui/Checkbox';
 
 import Scatterplot from './Scatterplot'
@@ -11,11 +10,6 @@ import {csv} from 'd3-request'
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
-import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
-import QueriesLoad from './QueriesLoad';
-import RaisedButton from 'material-ui/RaisedButton';
-import MenuItem from 'material-ui/MenuItem';
 
 const styles = {
   headline: {

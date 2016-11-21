@@ -2,7 +2,7 @@ import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 // From https://github.com/oliviertassinari/react-swipeable-views
 import SwipeableViews from 'react-swipeable-views';
-import {deepPurpleA400, orange300, blue400, indigoA400, blue900} from 'material-ui/styles/colors';
+//import {deepPurpleA400, orange300, blue400, indigoA400, blue900} from 'material-ui/styles/colors';
 import Checkbox from 'material-ui/Checkbox';
 
 
