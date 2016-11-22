@@ -14,7 +14,7 @@ const styles = {
     borderWidth: '0px 0px 1px 0px'
   },
   avatar:{
-    margin:'-20px 8px 0px 0px',
+    margin:'-4px 8px 0px 0px',
   },
   cardHeader:{
     background: '#DCCCE7',
@@ -50,17 +50,23 @@ class LoadQueries extends Component{
 
   handleExpandChange = (expanded) => {
     this.setState({expanded: expanded});
+    if(expanded){
+      this.props.setActiveMenu(expanded, 0);
+    }
   };
 
   handleToggle = (event, toggle) => {
+    console.log("handleToggle");
     this.setState({expanded: toggle});
   };
 
   handleExpand = () => {
+    console.log("expand");
     this.setState({expanded: true});
   };
 
   handleReduce = () => {
+    console.log("reduce");
     this.setState({expanded: false});
   };
 
@@ -70,7 +76,7 @@ class LoadQueries extends Component{
       <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} style={styles.card}>
            <CardHeader
              title="Search"
-             avatar={ <Avatar color={'white'} backgroundColor={'#7940A0'} size={25} style={styles.avatar} icon={<Assignment />} />}
+             avatar={ <Avatar color={'white'} backgroundColor={'#7940A0'} size={this.props.sizeAvatar} style={styles.avatar} icon={<Assignment />} />}
              style={styles.cardHeader}
              actAsExpander={true}
              showExpandableButton={true}

@@ -13,7 +13,7 @@ const styles = {
   },
   cardHeader:{
     background: 'white',
-    padding:'8px 8px 4px 8px',
+    padding:'0px 8px 0px 8px',
     borderRadius: '0px 0px 0px 0px',
   },
   avatar:{
@@ -30,13 +30,7 @@ class Views extends Component{
   render(){
     return(
       <Card initiallyExpanded={true} style={styles.card}>
-           <CardHeader
-             title="View"
-             avatar={ <Avatar color={'white'} backgroundColor={'#7D49A1'} size={25} style={styles.avatar} icon={<CheckList />} />}
-              style={styles.cardHeader}
-             actAsExpander={true}
-             showExpandableButton={true}
-           />
+
            <CardMedia expandable={true} style={styles.cardMedia}>
               <ViewTabs />
            </CardMedia>
@@ -46,3 +40,13 @@ class Views extends Component{
 }
 
 export default Views;
+
+/*
+<CardHeader
+  //title="View"
+  //avatar={ <Avatar color={'white'} backgroundColor={'#7D49A1'} size={25} style={styles.avatar} icon={<CheckList />} />}
+   style={styles.cardHeader}
+  actAsExpander={true}
+  showExpandableButton={true}
+/>
+*/

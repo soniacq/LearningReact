@@ -44,30 +44,24 @@ class Header extends Component {
     removeRecord = () => {
        console.log("here");
         this.setState({logged: true});
-        Body.openDock1();
+        //Body.openDock1();
     }
 
   render() {
 
-      const sidebarProps = {
-          bar: (<div>Amazing Sidebar</div>),
-          opened: true,
-          size: 200
-      };
-
     return (
 
       <div>
-      <Sidebar {... sidebarProps} />
-        <AppBar showMenuIconButton={true}
+        <AppBar showMenuIconButton={false}
           style={styles.backgound}
           title={  <span style={styles.titleText}> Domain Discovery Tool </span>}
-          iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+          //iconElementLeft={<IconButton><NavigationClose /></IconButton>}
           iconElementRight={<img src={logoNYU}  height='45' width='40'  />}
-          onLeftIconButtonTouchTap={this.removeRecord.bind(this)}
+          //onLeftIconButtonTouchTap={this.removeRecord.bind(this)}
         />
 
         {this.props.children}
+
         </div>
     );
   }

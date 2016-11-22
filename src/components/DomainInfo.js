@@ -9,6 +9,14 @@
   import RaisedButton from 'material-ui/RaisedButton';
   import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
+  import FlatButton from 'material-ui/FlatButton';
+  import FontIcon from 'material-ui/FontIcon';
+  import ActionAndroid from 'material-ui/svg-icons/action/android';
+  import Model from 'material-ui/svg-icons/image/blur-linear';
+    import Domain from 'material-ui/svg-icons/maps/transfer-within-a-station';
+  import {fullWhite} from 'material-ui/styles/colors';
+
+
   var ReactRouter = require('react-router');
   var Link = ReactRouter.Link;
 
@@ -36,6 +44,14 @@
       marginLeft: '0px',
       marginRight: '2px'
     },
+    buttons:{
+
+      margin: '-10px',
+      marginTop:5,
+      width:35,
+      border:0,
+    },
+    
   };
 
 
@@ -44,26 +60,14 @@
 
       return(
         <Toolbar style={styles.zeroMarginLeftRight}>
-          <ToolbarGroup  firstChild={true} style={styles.toolBarCurrentDomain}>
             <ToolbarTitle text="Machine Learning" style={styles.tittleCurrentDomain}/>
-            <IconMenu
-              iconButtonElement={
-                <IconButton touch={true}>
-                <NavigationExpandMoreIcon />
-                </IconButton>
-              }
-              style={styles.zeroMarginLeftRight}
-            >
-              <MenuItem primaryText="Create Model" />
-              <MenuItem primaryText="More Info" />
-            </IconMenu>
-            <ToolbarSeparator style={styles.zeroMarginLeftRight} />
-          </ToolbarGroup>
-          <ToolbarGroup lastChild={true}  style={styles.toolBarGroupChangeDomain}>
-            <Link to='/'>
-            <RaisedButton  style={{marginTop:10, marginLeft: '1px', marginRight: '3px'}} label="Change" primary={true} />
-            </Link>
-          </ToolbarGroup>
+              <ToolbarSeparator style={styles.zeroMarginLeftRight} />
+                 <IconButton tooltip="Create Model" style={{marginLeft:'-15px', marginRight:'-10px', marginTop:5}}> <Model />
+                 </IconButton>
+                 <Link to='/'>
+                 <IconButton tooltip="Change Domain" style={{marginLeft:'-15px', marginTop:5}}> <Domain />
+                 </IconButton>
+                 </Link>
         </Toolbar>
       )
     }
@@ -98,6 +102,9 @@
 
     handleExpandChange = (expanded) => {
       this.setState({expanded: expanded});
+      if(expanded){
+        this.props.setActiveMenu(expanded, 2);
+      }
     };
 
     handleToggle = (event, toggle) => {
@@ -144,13 +151,6 @@
             kjl
           </CardActions>
           <CardText  expandable={true} >
-            <div>
-              <RaisedButton style={{marginLeft:100}}
-              label="Toggle Drawer"
-              onTouchTap={this.handleToggle}
-              />
-            </div>
-
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
             Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
@@ -162,3 +162,10 @@
   }
 
   export default DomainInfo;
+
+
+  /*<ToolbarGroup lastChild={true}  style={styles.toolBarGroupChangeDomain}>
+    <Link to='/'>
+    <RaisedButton  style={{marginTop:10, marginLeft: '1px', marginRight: '3px'}} label="Change" primary={true} />
+    </Link>
+  </ToolbarGroup>*/

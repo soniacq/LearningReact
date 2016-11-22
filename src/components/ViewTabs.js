@@ -10,6 +10,17 @@ import {csv} from 'd3-request'
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
+import {List, ListItem} from 'material-ui/List';
+import ActionInfo from 'material-ui/svg-icons/action/info';
+import Divider from 'material-ui/Divider';
+import Subheader from 'material-ui/Subheader';
+import Avatar from 'material-ui/Avatar';
+import FileFolder from 'material-ui/svg-icons/file/folder';
+import ActionAssignment from 'material-ui/svg-icons/action/assignment';
+import {blue500, yellow600} from 'material-ui/styles/colors';
+import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
+import Toggle from 'material-ui/Toggle';
+
 
 const styles = {
   headline: {
@@ -75,25 +86,51 @@ class ViewTabs extends React.Component {
           inkBarStyle={{background: '#7940A0' ,height: '4px'}}
           tabItemContainerStyle={{background:'#9A7BB0', height: '40px'}}
         >
-          <Tab label="Snippes" value={0} style={styles.tab} />
+          <Tab label="Snippets" value={0} style={styles.tab} />
           <Tab label="Visualizations" value={1} style={styles.tab} />
           <Tab label="Model" value={2} style={styles.tab} />
         </Tabs>
         <SwipeableViews index={this.state.slideIndex} onChangeIndex={this.handleChange}  >
           <div style={styles.headline}>
-            <Checkbox label="QueryOne" style={styles.checkbox}  />
-            <Checkbox label="Querytwo" style={styles.checkbox}  />
-            <Checkbox label="Querythree" style={styles.checkbox}  />
-            <Checkbox label="Queryfour" style={styles.checkbox}  />
-            <Checkbox label="SimpleQuery" style={styles.checkbox}  />
-            <Checkbox label="SimpleQuery" style={styles.checkbox}  />
-            <Checkbox label="SimpleQuery" style={styles.checkbox}  />
-            <Checkbox label="SimpleQuery" style={styles.checkbox}  />
+          <List>
+      <Subheader inset={true}>100 pages </Subheader>
+      <ListItem
+        leftAvatar={<Avatar icon={<FileFolder />} />}
+        rightToggle={<Toggle />}
+        primaryText="Title Url One"
+        secondaryText="Description Page .. Relevant words"
+      />
+      <ListItem
+        leftAvatar={<Avatar icon={<FileFolder />} />}
+        rightToggle={<Toggle />}
+        primaryText="Title Url Two"
+        secondaryText="Description Page .. Relevant words"
+      />
+      <ListItem
+        leftAvatar={<Avatar icon={<FileFolder />} />}
+        rightToggle={<Toggle />}
+        primaryText="Title Url Three"
+        secondaryText="Jan 28, 2014Description Page .. Relevant words"
+      />
+    </List>
+    <Divider inset={true} />
+    <List>
+      <ListItem
+        leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={blue500} />}
+        rightToggle={<Toggle />}
+        primaryText="Home page escort"
+        secondaryText="Jan 20, 2014Description Page .. Relevant words"
+      />
+      <ListItem
+        leftAvatar={<Avatar icon={<EditorInsertChart />} backgroundColor={yellow600} />}
+        rightToggle={<Toggle />}
+        primaryText="Random pages"
+        secondaryText="Jan 10, 2014Description Page .. Relevant words"
+      />
+    </List>
           </div>
           <div style={styles.headline}>
-          <FloatingActionButton mini={true} style={styles.button}>
-   <ContentAdd />
- </FloatingActionButton>
+
 
             {pairs.map((p)=>{
                 return (

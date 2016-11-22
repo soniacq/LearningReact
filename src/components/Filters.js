@@ -14,7 +14,7 @@ const styles = {
 
   },
   avatar:{
-    margin:'-20px 8px 0px 0px',
+    margin:'-4px 8px 0px 0px',
   },
   cardHeader:{
     background: '#DCCCE7',
@@ -30,12 +30,49 @@ const styles = {
 };
 
 class Filters extends Component{
+
+    constructor(props) {
+      super(props);
+      this.state = {
+        expanded: this.props.statedCard,
+      };
+    };
+
+    componentWillMount = () => {
+     this.setState({expanded: this.props.statedCard, valueT: true,});
+    };
+
+    componentWillReceiveProps  = (newProps) => {
+         this.setState({expanded: this.props.statedCard}, function() {
+              this.setState({expanded: this.props.statedCard});
+         });
+     };
+
+    handleExpandChange = (expanded) => {
+      this.setState({expanded: expanded});
+      if(expanded){
+        this.props.setActiveMenu(expanded, 1);
+      }
+    };
+
+    handleToggle = (event, toggle) => {
+      this.setState({expanded: toggle});
+    };
+
+    handleExpand = () => {
+      this.setState({expanded: true});
+    };
+
+    handleReduce = () => {
+      this.setState({expanded: false});
+    };
+
   render(){
     return(
-      <Card style={styles.card}>
+      <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} style={styles.card}>
            <CardHeader
              title="Filters"
-             avatar={ <Avatar color={'white'} backgroundColor={'#7940A0'} size={25} style={styles.avatar} icon={<CheckList />} />}
+             avatar={ <Avatar color={'white'} backgroundColor={'#7940A0'} size={this.props.sizeAvatar} style={styles.avatar} icon={<CheckList />} />}
              style={styles.cardHeader}
              actAsExpander={true}
              showExpandableButton={true}
