@@ -57,7 +57,7 @@ class Body extends Component{
       dragToggleDistance: 30,
       size:350,
       iconDomainInfo:null,
-      stateDomainInfoCard:true,
+      stateDomainInfoCard:false,
       stateQueryCard:true,
       stateFiltersCard:false,
       sizeAvatar:25,
@@ -85,8 +85,8 @@ class Body extends Component{
   closeMenu(){
     this.setState({
       size: 60,
-      iconDomainInfo:<Avatar color={'white'} backgroundColor={'#7940A0'} size={35} style={styles.avatar} icon={<Home />} />,
-      stateDomainInfoCard:false,
+      //iconDomainInfo:<Avatar color={'white'} backgroundColor={'#7940A0'} size={35} style={styles.avatar} icon={<Home />} />,
+      //stateDomainInfoCard:false,
       open: !this.state.open,
       sizeAvatar:35,
     });
@@ -96,7 +96,6 @@ class Body extends Component{
     this.setState({
       size: 350,
       iconDomainInfo:null,
-      stateDomainInfoCard:true,
       open: !this.state.open,
       sizeAvatar:25,
     });
@@ -106,12 +105,14 @@ class Body extends Component{
     if(this.state.open){
       this.closeMenu();
       this.setState({
+        stateDomainInfoCard:false,
         stateQueryCard:false,
         stateFiltersCard:false,
     });}
     else{
       this.openMenu();
       this.setState({
+        stateDomainInfoCard:false,
         stateQueryCard:false,
         stateFiltersCard:false,
       });
@@ -123,12 +124,8 @@ class Body extends Component{
     if(!this.state.open){
       this.openMenu();
     }
-    if(menu==2){
-      this.openMenu();
-    }
-    else{
-      var item = menu>0 ? this.setState({stateQueryCard: !expanded,  stateFiltersCard :expanded}) : this.setState({stateFiltersCard: !expanded, stateQueryCard: expanded});
-    }
+    var item = menu==0 ? this.setState({stateQueryCard: expanded,  stateFiltersCard :!expanded, stateDomainInfoCard:!expanded}) :
+    ( menu==1 ? this.setState({stateFiltersCard: expanded, stateQueryCard: !expanded, stateDomainInfoCard:!expanded}) : this.setState({ stateDomainInfoCard:expanded, stateFiltersCard: !expanded, stateQueryCard: !expanded}));
   }
 
 
@@ -137,7 +134,7 @@ class Body extends Component{
 
        <Col style={{marginTop:70, marginLeft:10, marginRight:10, width:350, background:"white"}}>
      <Row className="Menus-child">
-       <DomainInfo stated={this.state.iconDomainInfo} statedCard={this.state.stateDomainInfoCard} setActiveMenu={this.setActiveMenu.bind(this)}/>
+       <DomainInfo statedCard={this.state.stateDomainInfoCard} sizeAvatar={this.state.sizeAvatar} setActiveMenu={this.setActiveMenu.bind(this)}/>
      </Row>
      <Row className="Menus-child">
        <QueriesLoad statedCard={this.state.stateQueryCard} sizeAvatar={this.state.sizeAvatar} setActiveMenu={this.setActiveMenu.bind(this)}/>

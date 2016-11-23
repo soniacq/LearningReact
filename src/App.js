@@ -20,12 +20,17 @@ class App extends Component {
   super(props);
   this.state = {};
 }
+
+setActiveMenu (variable) {
+  console.log("setActiveMenu App: " + variable);
+}
+
   render() {
     return (
       <MuiThemeProvider>
       <div>
       <Router history={hashHistory}>
-        <Route path='/' component={Header}>
+        <Route path='/' setActiveMenu={this.setActiveMenu.bind(this)} component={Header}>
           <IndexRoute component={Home} />
           <Route path='playerOne' header='Player One' component={Body} />
         </Route>
