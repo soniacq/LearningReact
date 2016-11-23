@@ -4,30 +4,26 @@ import logoNYU from '../images/nyu_logo_purple.png';
 
 import { } from 'material-ui/styles/colors';
 
-import Sidebar from 'react-side-bar';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
+//import Sidebar from 'react-side-bar';
+//import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import IconButton from 'material-ui/IconButton';
-import Body from './Body';
+//import Body from './Body';
 
 
-import IconMenu from 'material-ui/IconMenu';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+//import IconMenu from 'material-ui/IconMenu';
+import {Toolbar, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import FontIcon from 'material-ui/FontIcon';
 import Model from 'material-ui/svg-icons/image/blur-linear';
 import Domain from 'material-ui/svg-icons/maps/transfer-within-a-station';
-import {fullWhite} from 'material-ui/styles/colors';
+//import {fullWhite} from 'material-ui/styles/colors';
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
-import { InputGroup, FormControl , DropdownButton,  MenuItem} from 'react-bootstrap';
+import { FormControl} from 'react-bootstrap';
 import Search from 'material-ui/svg-icons/action/search';
 
-import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
-import Paper from 'material-ui/Paper';
+//import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
+//import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
-
-const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
-const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
-const nearbyIcon = <IconLocationOn />;
 
 
 const styles = {
@@ -72,6 +68,45 @@ const styles = {
   },
 
 };
+class ToolBarHeader extends Component {
+
+  constructor(props){
+      super(props);
+      this.state = {
+          currentDomain:this.props.currentDomain,
+      };
+  }
+
+  componentWillReceiveProps  = (newProps) => {
+    console.log("1 "+ this.props.currentDomain);
+       this.setState({currentDomain: this.props.currentDomain}, function() {
+           console.log("2 "+ this.props.currentDomain);
+            this.setState({currentDomain: this.props.currentDomain});
+       });
+         console.log("3 "+ this.props.currentDomain);
+   };
+
+  render() {
+
+    return (
+      <Toolbar style={styles.zeroMarginLeftRight}>
+          <ToolbarTitle text={this.state.currentDomain} style={styles.tittleCurrentDomain}/>
+               <ToolbarSeparator  />
+               <IconButton tooltip="Create Model" style={{marginLeft:'-15px', marginRight:'-10px'}} onClick={this.props.activeHeader()}> <Model />
+               </IconButton>
+               <Link to='/'>
+               <IconButton tooltip="Change Domain" style={{marginLeft:'-15px'}} > <Domain />
+               </IconButton>
+               </Link>
+               <ToolbarSeparator  />
+
+                <FormControl style={{width:'40%', marginRight:'-150px', marginTop:5}} type="text" placeholder="Search ..." />
+                <IconButton style={{marginRight:'-25px'}}> <Search />
+                </IconButton>
+      </Toolbar>
+    );
+  }
+}
 
 class Header extends Component {
 
@@ -82,12 +117,21 @@ class Header extends Component {
           opened: true,
           logged: false,
           selectedIndex: 0,
+          currentDomain:this.props.route.currentDomain,
+          activeMenu:false,
+          header:<ToolBarHeader currentDomain={this.props.route.currentDomain} activeHeader={this.activeHeader.bind(this)}/>,
       };
   }
 
-  select = () => {
+  activeHeader = () => {
     console.log("here home");
-    this.props.route.setActiveMenu("hello love");
+    this.props.route.setActiveMenu("hello");
+  }
+
+  activeHeaderFromBody = () => {
+    console.log("here home");
+    this.props.route.setActiveMenu("hello");
+    this.setState({header:<ToolBarHeader activeHeader={this.activeHeader.bind(this)}/>,});
   }
 
   handleChange = (event, logged) => {
@@ -108,6 +152,20 @@ class Header extends Component {
         //Body.openDock1();
     }
 
+    componentWillMount = () => {
+     this.setState({activeMenu: this.props.route.activeMenu,});
+    };
+
+    componentWillReceiveProps  = (newProps) => {
+      console.log("1 "+ this.props.route.activeMenu.toString());
+         this.setState({activeMenu: this.props.route.activeMenu}, function() {
+             console.log("2 "+ this.props.route.activeMenu.toString());
+              this.setState({activeMenu: this.props.route.activeMenu});
+         });
+           console.log("3 "+ this.props.route.activeMenu.toString());
+     };
+
+
   render() {
 
     return (
@@ -120,21 +178,8 @@ class Header extends Component {
           iconElementLeft={<img src={logoNYU}  height='45' width='40'  />}
           //onLeftIconButtonTouchTap={this.removeRecord.bind(this)}
         >
-        <Toolbar style={styles.zeroMarginLeftRight}>
-            <ToolbarTitle text="Machine Learning" style={styles.tittleCurrentDomain}/>
-                 <ToolbarSeparator  />
-                 <IconButton tooltip="Create Model" style={{marginLeft:'-15px', marginRight:'-10px'}} onClick={this.select.bind(this)}> <Model />
-                 </IconButton>
-                 <Link to='/'>
-                 <IconButton tooltip="Change Domain" style={{marginLeft:'-15px'}} > <Domain />
-                 </IconButton>
-                 </Link>
-                 <ToolbarSeparator  />
+        {this.state.header}
 
-                  <FormControl style={{width:'30%', marginRight:'-100px', marginTop:5}} type="text" placeholder="Search ..." />
-                  <IconButton style={{marginRight:'-25px'}}> <Search />
-                  </IconButton>
-        </Toolbar>
         </AppBar>
         {this.props.children}
 
@@ -144,3 +189,5 @@ class Header extends Component {
 }
 
 export default Header;
+
+//<ToolBarHeader currentDomain={this.props.route.currentDomain} activeHeader={this.activeHeader.bind(this)}/>

@@ -7,18 +7,14 @@ import Checkbox from 'material-ui/Checkbox';
 import Scatterplot from './Scatterplot'
 import {csv} from 'd3-request'
 
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import {List, ListItem} from 'material-ui/List';
-import ActionInfo from 'material-ui/svg-icons/action/info';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 import Avatar from 'material-ui/Avatar';
 import FileFolder from 'material-ui/svg-icons/file/folder';
 import ActionAssignment from 'material-ui/svg-icons/action/assignment';
-import {blue500, yellow600} from 'material-ui/styles/colors';
-import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
+import {blue500} from 'material-ui/styles/colors';
 import Toggle from 'material-ui/Toggle';
 
 
@@ -78,74 +74,67 @@ class ViewTabs extends React.Component {
       }
     }
 
+    var urls = [];
+    var urlName = ["url1", "url12", "url13", "url14", "url15"];
+    var urlDescription = ["urlDescription1", "urlDescription2", "urlDescription3", "urlDescription4", "urlDescription5"];
+
+    for (let i = 0; i < urlName.length; i++) {
+        urls.push({
+            name: urlName[i],
+            description: urlDescription[i],
+        });
+    }
+
+
     return (
       <div>
         <Tabs
           onChange={this.handleChange}
           value={this.state.slideIndex}
           inkBarStyle={{background: '#7940A0' ,height: '4px'}}
-          tabItemContainerStyle={{background:'#9A7BB0', height: '40px'}}
-        >
-          <Tab label="Snippets" value={0} style={styles.tab} />
-          <Tab label="Visualizations" value={1} style={styles.tab} />
-          <Tab label="Model" value={2} style={styles.tab} />
+          tabItemContainerStyle={{background:'#9A7BB0', height: '40px'}}>
+            <Tab label="Snippets" value={0} style={styles.tab} />
+            <Tab label="Visualizations" value={1} style={styles.tab} />
+            <Tab label="Model" value={2} style={styles.tab} />
         </Tabs>
+
         <SwipeableViews index={this.state.slideIndex} onChangeIndex={this.handleChange}  >
-          <div style={styles.headline}>
-          <List>
-      <Subheader inset={true}>100 pages </Subheader>
-      <ListItem
-        leftAvatar={<Avatar icon={<FileFolder />} />}
-        rightToggle={<Toggle />}
-        primaryText="Title Url One"
-        secondaryText="Description Page .. Relevant words"
-      />
-      <ListItem
-        leftAvatar={<Avatar icon={<FileFolder />} />}
-        rightToggle={<Toggle />}
-        primaryText="Title Url Two"
-        secondaryText="Description Page .. Relevant words"
-      />
-      <ListItem
-        leftAvatar={<Avatar icon={<FileFolder />} />}
-        rightToggle={<Toggle />}
-        primaryText="Title Url Three"
-        secondaryText="Jan 28, 2014Description Page .. Relevant words"
-      />
-    </List>
-    <Divider inset={true} />
-    <List>
-      <ListItem
-        leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={blue500} />}
-        rightToggle={<Toggle />}
-        primaryText="Home page escort"
-        secondaryText="Jan 20, 2014Description Page .. Relevant words"
-      />
-      <ListItem
-        leftAvatar={<Avatar icon={<EditorInsertChart />} backgroundColor={yellow600} />}
-        rightToggle={<Toggle />}
-        primaryText="Random pages"
-        secondaryText="Jan 10, 2014Description Page .. Relevant words"
-      />
-    </List>
-          </div>
-          <div style={styles.headline}>
-
-
-            {pairs.map((p)=>{
-                return (
-                    <Scatterplot title={p['names'][0] + " x " + p['names'][1]} data={this.state.data}
-                        xAcessor={(d)=>d[p['dimensions'][0]]} yAcessor={(d)=>d[p['dimensions'][1]]} labelAcessor={(d)=>d["species"]}
-                        xLabel={p['names'][0]} yLabel={p['names'][1]}/>
-                  )
-            })}
-
-          </div>
-          <div style={styles.headline}>
-            <Checkbox label="Neutral" style={styles.checkbox}  />
-            <Checkbox label="Relevant" style={styles.checkbox}  />
-            <Checkbox label="Irrelevante" style={styles.checkbox}  />
-          </div>
+              <div style={styles.headline}>
+                    {
+                      <List>
+                      <Subheader inset={true}>100 pages </Subheader>
+                      {urls.map((url, index) => (
+                        <ListItem key={index}
+                          leftAvatar={<Avatar icon={<FileFolder />} />}
+                          rightToggle={<Toggle />}
+                          primaryText={url.name}
+                          secondaryText={url.description}
+                        />
+                      ))}
+                      <Divider inset={true} />
+                      <ListItem
+                        leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={blue500} />}
+                        rightToggle={<Toggle />}
+                        primaryText="Home page escort"
+                        secondaryText="Jan 20, 2014Description Page .. Relevant words"
+                      />
+                    </List>
+                  }
+            </div>
+            <div style={styles.headline}>
+                  {pairs.map((p)=>{
+                      return (
+                          <Scatterplot title={p['names'][0] + " x " + p['names'][1]} data={this.state.data}
+                              xAcessor={(d)=>d[p['dimensions'][0]]} yAcessor={(d)=>d[p['dimensions'][1]]} labelAcessor={(d)=>d["species"]}
+                              xLabel={p['names'][0]} yLabel={p['names'][1]}/>
+                        )
+                  })}
+            </div>
+            <div style={styles.headline}>
+                  <Checkbox label="Neutral" style={styles.checkbox}  />
+                  <Checkbox label="Relevant" style={styles.checkbox}  />
+                  <Checkbox label="Irrelevante" style={styles.checkbox}  />
+            </div>
         </SwipeableViews>
       </div>
     );

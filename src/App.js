@@ -18,11 +18,23 @@ injectTapEventPlugin();
 class App extends Component {
   constructor(props){
   super(props);
-  this.state = {};
+  this.state = {
+    currentDomain:' s',
+    activeMenu: false,
+  };
 }
 
 setActiveMenu (variable) {
   console.log("setActiveMenu App: " + variable);
+}
+
+setSelectedDomain(currentDomain1, active){
+  console.log("setSelectedDomainSonia" + currentDomain1 + ", " +active.toString());
+    this.setState({currentDomain:currentDomain1, activeMenu:active}, function() {
+         this.setState({currentDomain:currentDomain1, activeMenu:active});
+         this.forceUpdate();
+    });
+    this.forceUpdate();
 }
 
   render() {
@@ -30,9 +42,9 @@ setActiveMenu (variable) {
       <MuiThemeProvider>
       <div>
       <Router history={hashHistory}>
-        <Route path='/' setActiveMenu={this.setActiveMenu.bind(this)} component={Header}>
-          <IndexRoute component={Home} />
-          <Route path='playerOne' header='Player One' component={Body} />
+        <Route path='/' currentDomain={this.state.currentDomain} activeMenu={this.state.activeMenu}  setActiveMenu={this.setActiveMenu.bind(this)} component={Header}>
+          <IndexRoute setSelectedDomain={this.setSelectedDomain.bind(this)} component={Home} />
+          <Route path='playerOne' header='Player One'  component={Body} />
         </Route>
       </Router>
       </div>

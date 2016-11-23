@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {Card, CardHeader, CardMedia} from 'material-ui/Card';
-import QueriesTabs from './QueriesTabs';
 import Avatar from 'material-ui/Avatar';
-import Assignment from 'material-ui/svg-icons/action/assignment-returned';
 
 import Home from 'material-ui/svg-icons/action/home';
 

@@ -1,4 +1,4 @@
-var React = require('react');
+import React, { Component } from 'react';
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 
@@ -16,7 +16,22 @@ import {fullWhite} from 'material-ui/styles/colors';
 
 
 
-function Home () {
+class Home extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      currentDomain:null,
+    };
+  }
+
+setSelectedDomain(currentDomain){
+  console.log("hello new domain" +currentDomain);
+  this.setState({currentDomain:currentDomain});
+  this.props.route.setSelectedDomain(currentDomain, true);
+}
+
+render(){
+var mydata = ["Machine Learning", "Text Classification", "Ebola", "Data mining", "More domains"];
 
   return (
     <div className="jumbotron col-sm-12 text-center">
@@ -29,28 +44,15 @@ function Home () {
             borderWidth: '0px 0px 1px 0px'}}>
                   <List>
                     <Subheader style={{color:'black'}}><h2>Domains</h2></Subheader>
-                    <Link to='/playerOne' text={"Machine Learning"}>
-                    <ListItem style={{textAlign: 'left'}}
-                      primaryText="Machine Learning"
-                      rightIcon={<Forward />}
-                    />
-                    </Link>
-                    <ListItem style={{textAlign: 'left'}}
-                      primaryText="Car"
-                      rightIcon={<Forward />}
-                    />
-                    <ListItem style={{textAlign: 'left'}}
-                      primaryText="Text Classification"
-                      rightIcon={<Forward />}
-                    />
-                    <ListItem style={{textAlign: 'left'}}
-                      primaryText="Ebola"
-                      rightIcon={<Forward />}
-                    />
-                    <ListItem style={{textAlign: 'left'}}
-                      primaryText="Data mining"
-                      rightIcon={<Forward />}
-                    />
+                    {Object.keys(mydata).map((k, index)=>{
+                      return <Link to='/playerOne' text={"Machine Learning"}>
+                      <ListItem key={index} style={{textAlign: 'left'}}
+                        primaryText={mydata[k]}
+                        rightIcon={<Forward />}
+                        onClick={this.setSelectedDomain.bind(this, mydata[k])}
+                      />
+                      </Link>
+                    })}
                 </List>
             </Col>
             <Col xs={3} md={3}>
@@ -75,7 +77,8 @@ function Home () {
         </Row>
       </div>
     </div>
-  )
+  );
+}
 }
 
-module.exports = Home;
+export default Home;

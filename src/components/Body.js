@@ -11,11 +11,8 @@ import Sidebar from 'react-sidebar';
 import Avatar from 'material-ui/Avatar';
 import Assignment from 'material-ui/svg-icons/action/assignment-returned';
 import Plus from 'material-ui/svg-icons/action/swap-horiz';
-import Home from 'material-ui/svg-icons/action/home';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
-
-import ContentAdd from 'material-ui/svg-icons/content/add';
 
 const styles = {
   button:{
@@ -124,8 +121,8 @@ class Body extends Component{
     if(!this.state.open){
       this.openMenu();
     }
-    var item = menu==0 ? this.setState({stateQueryCard: expanded,  stateFiltersCard :!expanded, stateDomainInfoCard:!expanded}) :
-    ( menu==1 ? this.setState({stateFiltersCard: expanded, stateQueryCard: !expanded, stateDomainInfoCard:!expanded}) : this.setState({ stateDomainInfoCard:expanded, stateFiltersCard: !expanded, stateQueryCard: !expanded}));
+    var item = menu===0 ? this.setState({stateQueryCard: expanded,  stateFiltersCard :!expanded, stateDomainInfoCard:!expanded}) :
+    ( menu===1 ? this.setState({stateFiltersCard: expanded, stateQueryCard: !expanded, stateDomainInfoCard:!expanded}) : this.setState({ stateDomainInfoCard:expanded, stateFiltersCard: !expanded, stateQueryCard: !expanded}));
   }
 
 
